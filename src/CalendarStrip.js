@@ -564,13 +564,15 @@ class CalendarStrip extends Component {
     }
 
     let calendarHeader = this.props.showMonth && (
-      <CalendarHeader
-        calendarHeaderFormat={this.props.calendarHeaderFormat}
-        calendarHeaderStyle={this.props.calendarHeaderStyle}
-        datesForWeek={this.state.datesForWeek}
-        fontSize={this.state.monthFontSize}
-        allowHeaderTextScaling={this.props.shouldAllowFontScaling}
-      />
+        <View style={this.props.calendarHeaderViewStyle}>
+          <CalendarHeader
+            calendarHeaderFormat={this.props.calendarHeaderFormat}
+            calendarHeaderStyle={this.props.calendarHeaderStyle}
+            datesForWeek={this.state.datesForWeek}
+            fontSize={this.state.monthFontSize}
+            allowHeaderTextScaling={this.props.shouldAllowFontScaling}
+          />
+        </View>
     );
 
     // calendarHeader renders above the dates & left/right selectors if dates are shown.

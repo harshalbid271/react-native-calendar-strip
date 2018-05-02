@@ -123,32 +123,40 @@ class CalendarDay extends Component {
 
   render() {
     // Defaults for disabled state
-    let dateNameStyle = [styles.dateName, !this.props.enabled && this.props.disabledDateNameStyle];
-    let dateNumberStyle = [styles.dateNumber, !this.props.enabled && this.props.disabledDateNumberStyle];
+    let dateNameStyle = [styles.dateName, this.props.disabledDateNameStyle];
+    let dateNumberStyle = [
+      styles.dateNumber,
+      this.props.disabledDateNumberStyle
+    ];
     let dateViewStyle = this.props.enabled
-      ? [{ backgroundColor: "transparent" }]
+      ? []
       : [{ opacity: this.props.disabledDateOpacity }];
-
     let customStyle = this.props.customStyle;
+
     if (customStyle) {
-      dateNameStyle.push(customStyle.dateNameStyle);
-      dateNumberStyle.push(customStyle.dateNumberStyle);
+      dateNameStyle = [styles.dateName, customStyle.dateNameStyle];
+      dateNumberStyle = [styles.dateNumber, customStyle.dateNumberStyle];
       dateViewStyle.push(customStyle.dateContainerStyle);
-    }
-    if (this.props.enabled && this.state.selected) {
+    } else if (this.props.enabled) {
       // Enabled state
       //The user can disable animation, so that is why I use selection type
       //If it is background, the user have to input colors for animation
       //If it is border, the user has to input color for border animation
       switch (this.props.daySelectionAnimation.type) {
         case "background":
-          dateViewStyle.push({ backgroundColor: this.props.daySelectionAnimation.highlightColor });
+          let dateViewBGColor = this.state.selected
+            ? this.props.daySelectionAnimation.highlightColor
+            : "transparent";
+          dateViewStyle = { backgroundColor: dateViewBGColor };
           break;
         case "border":
-          dateViewStyle.push({
+          let dateViewBorderWidth = this.state.selected
+            ? this.props.daySelectionAnimation.borderWidth
+            : 0;
+          dateViewStyle = {
             borderColor: this.props.daySelectionAnimation.borderHighlightColor,
-            borderWidth: this.props.daySelectionAnimation.borderWidth
-          });
+            borderWidth: dateViewBorderWidth
+          };
           break;
         default:
           // No animation styling by default
