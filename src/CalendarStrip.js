@@ -607,7 +607,7 @@ class CalendarStrip extends Component {
             />
 
             {this.props.showDate ? (
-              <View style={styles.calendarDates}>{datesRender}</View>
+              <View style={[styles.calendarDates, this.props.calendarDatesStyle]}>{datesRender}</View>
             ) : (
               calendarHeader
             )}
