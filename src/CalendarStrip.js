@@ -590,7 +590,7 @@ class CalendarStrip extends Component {
           onLayout={this.onLayout.bind(this)}
         >
           {this.props.showDate && calendarHeader}
-          <View style={styles.datesStrip}>
+          <View style={[styles.datesStrip, this.props.datesStripStyle}]>
             <WeekSelector
               controlDate={this.props.minDate}
               iconComponent={this.props.leftSelector}
