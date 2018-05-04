@@ -302,7 +302,7 @@ class CalendarStrip extends Component {
       return originalStartDate;
     }
     let addOrSubtract = daysDiff > 0 ? "add" : "subtract";
-    let adjustWeeks = daysDiff / 7;
+    let adjustWeeks = Math.abs(daysDiff / 7);
     adjustWeeks =
       adjustWeeks > 0
         ? Math.floor(adjustWeeks)
@@ -607,7 +607,7 @@ class CalendarStrip extends Component {
             />
 
             {this.props.showDate ? (
-              <View style={[styles.calendarDates, this.props.calendarDatesStyle]}>{datesRender}</View>
+              <View style={styles.calendarDates}>{datesRender}</View>
             ) : (
               calendarHeader
             )}
