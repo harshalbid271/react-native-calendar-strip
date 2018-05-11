@@ -586,7 +586,7 @@ class CalendarStrip extends Component {
         ]}
       >
         <View
-          style={[this.props.innerStyle, { height: this.state.height }]}
+          style={[this.props.innerStyle]}
           onLayout={this.onLayout.bind(this)}
         >
           {this.props.showDate && calendarHeader}
